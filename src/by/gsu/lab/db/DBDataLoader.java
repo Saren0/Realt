@@ -1,5 +1,7 @@
 package by.gsu.lab.db;
 
+import by.gsu.lab.beans.LoginPage;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +14,40 @@ import java.util.List;
  * @author Palachanin Aliaksei
  */
 public class DBDataLoader {
+
+    public LoginPage getUser(Connection connection, String login, String password)
+            throws SQLException{
+        final int ID = 0;
+        final int LOGIN = 1;
+        final int PASSWORD = 2;
+        final int ROOTS = 3;
+
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        LoginPage loginPage = null;
+//        LoginPage loginPage = new LoginPage();
+        try {
+            preparedStatement = connection.prepareStatement(
+                    SQLQueries.GET_USERS);
+            preparedStatement.setString(LOGIN, login);
+            preparedStatement.setString(PASSWORD, password);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                loginPage = new LoginPage(resultSet.getInt(ID),
+                        resultSet.getString(LOGIN),
+                        resultSet.getString(PASSWORD),
+                        resultSet.getInt(ROOTS));
+//                loginPage.setId(resultSet.getInt(ID));
+//                loginPage.setUsername(resultSet.getString(LOGIN));
+//                loginPage.setPass(resultSet.getString(PASSWORD));
+//                loginPage.setRoot(resultSet.getInt(ROOTS));
+            }
+            return loginPage;
+        } finally {
+            ConnectionControl.close(resultSet);
+            ConnectionControl.close(preparedStatement);
+        }
+    }
 
     public List<List<String>> getAllBooks(Connection connection) throws SQLException {
         final int ID = 1;

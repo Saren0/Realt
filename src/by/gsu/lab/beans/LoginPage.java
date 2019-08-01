@@ -1,12 +1,24 @@
 package by.gsu.lab.beans;
 
 public class LoginPage {
+    private int id;
     private String username;
     private String pass;
+    private int root;
 
-    public LoginPage(String username, String pass) {
+    public LoginPage(int id, String username, String pass, int root) {
+        this.id = id;
         this.username = username;
         this.pass = pass;
+        this.root = root;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -25,11 +37,11 @@ public class LoginPage {
         this.pass = pass;
     }
 
-    @Override
-    public String toString() {
-        return "LoginPage{" +
-                "username='" + username + '\'' +
-                ", pass='" + pass + '\'' +
-                '}';
+    public int getRoot() {
+        return root;
+    }
+
+    public void setRoot(int root) {
+        this.root = root;
     }
 }
