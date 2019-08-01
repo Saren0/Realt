@@ -8,6 +8,23 @@ import java.sql.*;
  */
 public class DBDataSetter {
 
+    public void getUsers(Connection connection, String login, String password)
+            throws SQLException{
+        final int LOGIN = 1;
+        final int PASSWORD = 2;
+
+        PreparedStatement credentials = null;
+        try {
+            credentials = connection.prepareStatement(
+                    SQLQueries.GET_USERS);
+            credentials.setString(LOGIN, login);
+            credentials.setString(PASSWORD, password);
+            credentials.executeUpdate();
+        } finally {
+            ConnectionControl.close(credentials);
+        }
+    }
+
 	public void insertBooks(Connection connection, String a, String b, String c, String d, String e, String f)
 		throws SQLException {		
 		final int INDEX_X = 1;

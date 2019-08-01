@@ -6,6 +6,9 @@ package by.gsu.lab.db;
  */
 class SQLQueries {
 
+    final static String GET_USERS =
+            "SELECT * FROM users WHERE login = ? AND password = ?;";
+
     final static String PS_INSERT_BOOKS =
             "INSERT INTO shop.books (obl_znani, index_k, author, nazvanie, year_book, price) VALUES (?, ?, ?, ?, ?, ?);";
 

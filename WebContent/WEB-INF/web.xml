@@ -3,13 +3,23 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
    http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
-  <display-name>KR</display-name>
+  <display-name>REALT</display-name>
 
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.html</welcome-file>
   </welcome-file-list>
 
-  <servlet>
+    <servlet>
+        <display-name>login-page</display-name>
+        <servlet-name>LoginPageController</servlet-name>
+        <servlet-class>by.gsu.lab.controllers.LoginPageController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginPageController</servlet-name>
+        <url-pattern>/LoginPage</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
     <display-name>insert-book</display-name>
     <servlet-name>InsertBooks</servlet-name>
     <servlet-class>by.gsu.lab.controllers.InsertBooks</servlet-class>
