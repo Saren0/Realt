@@ -6,8 +6,14 @@ package by.gsu.lab.db;
  */
 class SQLQueries {
 
-    final static String GET_USERS =
-            "SELECT * FROM users WHERE login = ? AND password = ?;";
+    final static String GET_USER =
+            "SELECT * FROM realt.users WHERE login = ? AND pass = ?;";
+
+    final static String GET_ALL_USERS =
+            "SELECT * FROM realt.users;";
+
+    final static String GET_ALL_APARTMENTS =
+            "SELECT * FROM realt.apartments;";
 
     final static String PS_INSERT_BOOKS =
             "INSERT INTO shop.books (obl_znani, index_k, author, nazvanie, year_book, price) VALUES (?, ?, ?, ?, ?, ?);";
@@ -17,15 +23,6 @@ class SQLQueries {
 
     final static String PS_INSERT_SELLS =
             "INSERT INTO shop.sells (obl_znani, index_k, kolich, otpysk_price, sell_date) VALUES (?, ?, ?, ?, ?);";
-
-    final static String PS_SELECT_BOOKS =
-            "SELECT * FROM shop.books;";
-
-    final static String PS_SELECT_ARRIVALES =
-            "SELECT * FROM shop.arrival;";
-
-    final static String PS_SELECT_SELLS =
-            "SELECT * FROM shop.sells;";
 
     final static String TASK_1 =
             "SELECT books.*, arrival.arrival_date FROM shop.books, shop.arrival WHERE books.index_k = arrival.index_k AND arrival_date = ?";

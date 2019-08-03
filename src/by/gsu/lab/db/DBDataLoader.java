@@ -1,6 +1,7 @@
 package by.gsu.lab.db;
 
-import by.gsu.lab.beans.LoginPage;
+import by.gsu.lab.beans.Apartment;
+import by.gsu.lab.beans.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,65 +16,53 @@ import java.util.List;
  */
 public class DBDataLoader {
 
-    public LoginPage getUser(Connection connection, String login, String password)
+    public User getUser(Connection connection, String login, String password)
             throws SQLException{
-        final int ID = 0;
-        final int LOGIN = 1;
-        final int PASSWORD = 2;
-        final int ROOTS = 3;
+        final int ID = 1;
+        final int LOGIN = 2;
+        final int PASSWORD = 3;
+        final int ROOTS = 4;
 
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        LoginPage loginPage = null;
-//        LoginPage loginPage = new LoginPage();
+        User user = null;
         try {
             preparedStatement = connection.prepareStatement(
-                    SQLQueries.GET_USERS);
-            preparedStatement.setString(LOGIN, login);
-            preparedStatement.setString(PASSWORD, password);
+                    SQLQueries.GET_USER);
+            preparedStatement.setString(1, login);
+            preparedStatement.setString(2, password);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
-                loginPage = new LoginPage(resultSet.getInt(ID),
+                user = new User(resultSet.getInt(ID),
                         resultSet.getString(LOGIN),
                         resultSet.getString(PASSWORD),
                         resultSet.getInt(ROOTS));
-//                loginPage.setId(resultSet.getInt(ID));
-//                loginPage.setUsername(resultSet.getString(LOGIN));
-//                loginPage.setPass(resultSet.getString(PASSWORD));
-//                loginPage.setRoot(resultSet.getInt(ROOTS));
             }
-            return loginPage;
+            return user;
         } finally {
             ConnectionControl.close(resultSet);
             ConnectionControl.close(preparedStatement);
         }
     }
 
-    public List<List<String>> getAllBooks(Connection connection) throws SQLException {
+    public List<User> getAllUsers(Connection connection)
+            throws SQLException{
         final int ID = 1;
-        final int O_Z = 2;
-        final int INDEX = 3;
-        final int AUTHOR = 4;
-        final int NAZVANIE = 5;
-        final int YEAR = 6;
-        final int PRICE = 7;
-        List<List<String>> result = new ArrayList<>();
+        final int LOGIN = 2;
+        final int PASSWORD = 3;
+        final int ROOTS = 4;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
+        List<User> result = new ArrayList<>();
         try {
             preparedStatement = connection.prepareStatement(
-                    SQLQueries.PS_SELECT_BOOKS);
+                    SQLQueries.GET_ALL_USERS);
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                List<String> currentList = new ArrayList<>();
-                currentList.add(Integer.toString(resultSet.getInt(ID)));
-                currentList.add(resultSet.getString(O_Z));
-                currentList.add(Integer.toString(resultSet.getInt(INDEX)));
-                currentList.add(resultSet.getString(AUTHOR));
-                currentList.add(resultSet.getString(NAZVANIE));
-                currentList.add(Integer.toString(resultSet.getInt(YEAR)));
-                currentList.add(Double.toString(resultSet.getDouble(PRICE)));
-                result.add(currentList);
+            while (resultSet.next()){
+                result.add(new User(resultSet.getInt(ID),
+                        resultSet.getString(LOGIN),
+                        resultSet.getString(PASSWORD),
+                        resultSet.getInt(ROOTS)));
             }
             return result;
         } finally {
@@ -82,58 +71,30 @@ public class DBDataLoader {
         }
     }
 
-    public List<List<String>> getAllArrivales(Connection connection) throws SQLException {
+    public List<Apartment> getAllApartments(Connection connection)
+            throws SQLException{
         final int ID = 1;
-        final int O_Z = 2;
-        final int INDEX = 3;
-        final int KOLVO = 4;
-        final int DATE_POSTYP = 5;
-        List<List<String>> result = new ArrayList<>();
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        try {
-            preparedStatement = connection.prepareStatement(
-                    SQLQueries.PS_SELECT_ARRIVALES);
-            resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                List<String> currentList = new ArrayList<>();
-                currentList.add(Integer.toString(resultSet.getInt(ID)));
-                currentList.add(resultSet.getString(O_Z));
-                currentList.add(Integer.toString(resultSet.getInt(INDEX)));
-                currentList.add(Integer.toString(resultSet.getInt(KOLVO)));
-                currentList.add(resultSet.getString(DATE_POSTYP));
-                result.add(currentList);
-            }
-            return result;
-        } finally {
-            ConnectionControl.close(resultSet);
-            ConnectionControl.close(preparedStatement);
-        }
-    }
-
-    public List<List<String>> getAllSells(Connection connection) throws SQLException {
-        final int ID = 1;
-        final int O_Z = 2;
-        final int INDEX = 3;
-        final int KOLVO = 4;
+        final int NAME = 2;
+        final int BEDROOM = 3;
+        final int SQUARE = 4;
         final int PRICE = 5;
-        final int DATE = 6;
-        List<List<String>> result = new ArrayList<>();
+        final int PHONE = 6;
+        final int PICTURE = 7;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
+        List<Apartment> result = new ArrayList<>();
         try {
             preparedStatement = connection.prepareStatement(
-                    SQLQueries.PS_SELECT_SELLS);
+                    SQLQueries.GET_ALL_APARTMENTS);
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                List<String> currentList = new ArrayList<>();
-                currentList.add(Integer.toString(resultSet.getInt(ID)));
-                currentList.add(resultSet.getString(O_Z));
-                currentList.add(Integer.toString(resultSet.getInt(INDEX)));
-                currentList.add(Integer.toString(resultSet.getInt(KOLVO)));
-                currentList.add(Double.toString(resultSet.getDouble(PRICE)));
-                currentList.add(resultSet.getString(DATE));
-                result.add(currentList);
+            while (resultSet.next()){
+                result.add(new Apartment(resultSet.getInt(ID),
+                        resultSet.getString(NAME),
+                        resultSet.getInt(BEDROOM),
+                        resultSet.getDouble(SQUARE),
+                        resultSet.getBigDecimal(PRICE),
+                        resultSet.getInt(PHONE),
+                        resultSet.getString(PICTURE)));
             }
             return result;
         } finally {

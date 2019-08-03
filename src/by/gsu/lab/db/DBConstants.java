@@ -17,7 +17,7 @@ class DBConstants {
      * имени базы данных (dots)
      */
     final static String DB_URL =
-            "jdbc:mysql://localhost:3306/shop?useLegacyDatetimeCode=false&amp&serverTimezone=UTC";
+            "jdbc:mysql://localhost:3306/realt?useLegacyDatetimeCode=false&amp&serverTimezone=UTC";
 
     /**
      * Пользователь

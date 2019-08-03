@@ -1,6 +1,6 @@
 package by.gsu.lab.controllers;
 
-import by.gsu.lab.beans.LoginPage;
+import by.gsu.lab.beans.User;
 import by.gsu.lab.db.ConnectionControl;
 import by.gsu.lab.db.DBDataLoader;
 
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 @SuppressWarnings("serial")
 public class LoginPageController extends AbstractBaseController {
-    private LoginPage loginPage;
+    private User user;
 
     @Override
     protected void performTask(HttpServletRequest request, HttpServletResponse response)
@@ -23,14 +23,14 @@ public class LoginPageController extends AbstractBaseController {
             String login = request.getParameter("username");
             String pass = request.getParameter("pass");
             checkUser(login, pass);
-            if (login.equals(loginPage.getUsername()) && pass.equals(loginPage.getPass())){
-                if(loginPage.getRoot() == 1){
-                    jump("/indexAdmin.jsp", request, response);
+            if (login.equals(user.getUsername()) && pass.equals(user.getPass())){
+                if(user.getRoot() == 1){
+                    jump("/index.jsp", request, response);
                 }
-                jump("/index.jsp", request, response);
+                jump("/indexAdmin.jsp", request, response);
             }
         } catch (IllegalArgumentException ex) {
-            jumpError("/index.jsp", ex.getMessage(), request, response);
+            jumpError("/index.html", ex.getMessage(), request, response);
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -42,7 +42,7 @@ public class LoginPageController extends AbstractBaseController {
         Connection connection;
         try {
             connection = ConnectionControl.getConnection();
-            loginPage = new DBDataLoader().getUser(connection, login, pass);
+            user = new DBDataLoader().getUser(connection, login, pass);
         } finally {
             ConnectionControl.close();
         }
