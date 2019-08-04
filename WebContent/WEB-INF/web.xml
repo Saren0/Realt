@@ -12,7 +12,7 @@
     <servlet>
         <display-name>login-page</display-name>
         <servlet-name>LoginPageController</servlet-name>
-        <servlet-class>by.gsu.lab.controllers.LoginPageController</servlet-class>
+        <servlet-class>by.ander.web.controllers.LoginPageController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginPageController</servlet-name>
@@ -22,7 +22,7 @@
     <servlet>
     <display-name>insert-user</display-name>
     <servlet-name>InsertUser</servlet-name>
-    <servlet-class>by.gsu.lab.controllers.InsertUser</servlet-class>
+    <servlet-class>by.ander.web.controllers.InsertUser</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>InsertUser</servlet-name>
@@ -31,7 +31,7 @@
   <servlet>
     <display-name>insert-apartment</display-name>
     <servlet-name>InsertApartment</servlet-name>
-    <servlet-class>by.gsu.lab.controllers.InsertApartment</servlet-class>
+    <servlet-class>by.ander.web.controllers.InsertApartment</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>InsertApartment</servlet-name>
@@ -41,47 +41,11 @@
   <servlet>
     <display-name>view-data</display-name>
     <servlet-name>ViewDataController</servlet-name>
-    <servlet-class>by.gsu.lab.controllers.ViewDataController</servlet-class>
+    <servlet-class>by.ander.web.controllers.ViewDataController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ViewDataController</servlet-name>
     <url-pattern>/ViewDataController</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <display-name>task3</display-name>
-    <servlet-name>Task3Controller</servlet-name>
-    <servlet-class>by.gsu.lab.controllers.Task3Controller</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Task3Controller</servlet-name>
-    <url-pattern>/Task3Controller</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <display-name>task4</display-name>
-    <servlet-name>Task4Controller</servlet-name>
-    <servlet-class>by.gsu.lab.controllers.Task4Controller</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Task4Controller</servlet-name>
-    <url-pattern>/Task4Controller</url-pattern>
-  </servlet-mapping> 
-  <servlet>
-    <display-name>task5</display-name>
-    <servlet-name>Task5Controller</servlet-name>
-    <servlet-class>by.gsu.lab.controllers.Task5Controller</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Task5Controller</servlet-name>
-    <url-pattern>/Task5Controller</url-pattern>
-  </servlet-mapping>  
-  <servlet>
-    <display-name>task1</display-name>
-    <servlet-name>Task1Controller</servlet-name>
-    <servlet-class>by.gsu.lab.controllers.Task1Controller</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Task1Controller</servlet-name>
-    <url-pattern>/Task1Controller</url-pattern>
   </servlet-mapping>
 
   <jsp-config>

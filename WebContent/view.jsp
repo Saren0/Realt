@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h1>Просмотр всех данных БД</h1><hr>
-	<a href='<c:url value="/index.jsp"/>' title="На главную">На главную</a><br><hr>
+	<a href='<c:url value="/admin.jsp"/>' title="На главную">На главную</a><br><hr>
 
 	<c:choose>
 		<c:when test="${usersList eq null or empty usersList}">
