@@ -16,7 +16,7 @@ import by.ander.web.db.DBDataLoader;
 import by.ander.web.beans.Apartment;
 
 @SuppressWarnings("serial")
-public class ViewDataController extends AbstractBaseController {
+public class AdminPageController extends AbstractBaseController {
 
 	@Override
 	protected void performTask(HttpServletRequest request, HttpServletResponse response)

@@ -12,7 +12,7 @@
 	<h1>Панель администратора</h1><hr>
 	<a href='<c:url value='<%="/ViewDataController"%>'/>' 
 		title="Показать всех данные БД">Показать все данные БД</a><br>
-	<a href='<c:url value="index.html"/>' title="Выйти">Выйти</a><br>
+	<a href='<c:url value="login.html"/>' title="Выйти">Выйти</a><br>
 	
     <c:if test="${not empty errorMessage}">
     	<div class="error">

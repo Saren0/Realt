@@ -27,10 +27,10 @@ public class LoginPageController extends AbstractBaseController {
                 if(user.getRoot() == 1){
                     jump("/admin.jsp", request, response);
                 }
-                jump("/indexAdmin.jsp", request, response);
+                jump("/index.html", request, response);
             }
         } catch (IllegalArgumentException ex) {
-            jumpError("/index.html", ex.getMessage(), request, response);
+            jumpError("/login.html", ex.getMessage(), request, response);
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {

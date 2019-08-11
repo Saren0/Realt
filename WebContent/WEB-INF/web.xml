@@ -41,11 +41,21 @@
   <servlet>
     <display-name>view-data</display-name>
     <servlet-name>ViewDataController</servlet-name>
-    <servlet-class>by.ander.web.controllers.ViewDataController</servlet-class>
+    <servlet-class>by.ander.web.controllers.AdminPageController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ViewDataController</servlet-name>
     <url-pattern>/ViewDataController</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <display-name>index-data</display-name>
+    <servlet-name>IndexPageController</servlet-name>
+    <servlet-class>by.ander.web.controllers.IndexPageController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IndexPageController</servlet-name>
+    <url-pattern>/IndexPageController</url-pattern>
   </servlet-mapping>
 
   <jsp-config>

@@ -10,12 +10,10 @@ import java.sql.Statement;
  * Класс для управления соединением с БД.
  * Имеет поведение, схожее с паттерном "Синглтон".
  * Присутствуют методы корректного закрытия ресурсов соединений.
+ *
  * @author Palachanin Aliaksei
  */
 public class ConnectionControl {
-
-
-
     private static Connection connection;
 
     private ConnectionControl() {
