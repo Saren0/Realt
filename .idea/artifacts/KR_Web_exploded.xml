@@ -2,10 +2,10 @@
   <artifact type="exploded-war" name="KR:Web exploded">
     <output-path>$PROJECT_DIR$/classes/artifacts/KR_Web_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="KR/web/Web" />
+      <element id="javaee-facet-resources" facet="Realt/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="KR" />
+          <element id="module-output" name="Realt" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="jstl" />
