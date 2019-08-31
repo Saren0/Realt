@@ -1,34 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="eng">
 <head>
-    <title>Start Page</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+            integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
+            crossorigin="anonymous"></script>
+    <title>REALT</title>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <style type="text/css">
+            .flat-container {
+
+            }
+            .flat__picture {
+
+            }
+    </style>
 </head>
 <body>
+<nav class="navbar navbar-expand navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">REALT</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-<button id="mybtn">Get cities</button>
+    <div class="collapse navbar-collapse" id="navbarsExample02">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-md-0">
+            <!--<input class="form-control" type="text" placeholder="Search">-->
+            <a href="#" class="text-info">Made by Palachanin Aliaksei</a>
+        </form>
+    </div>
+</nav>
+<main role="main">
+    <div class="jumbotron">
+        <div>
+            <ul id="output"></ul>
+        </div>
+        <script>
+            //$('#mybtn').click(function () {
+                $.getJSON('IndexPageController', function (data) {
+                    $("ul#output > li").remove();
 
-<div>
-    <ul id="output">
-
-    </ul>
-</div>
-
-<script>
-    $('#mybtn').click(function () {
-
-        $.getJSON('IndexPageController', function (data) {
-
-            $("ul#output > li").remove();
-
-            $.each(data, function (key, value) {
-                $("#output").append('<li>' + value['name'] + " " + value['bedroom'] + " "
-                    + value['square'] + " " + value['price'] + " " +
-                    value['phone'] + " " + value['picture'] + '</li>');
-            });
-        });
-    });
-</script>
+                    $.each(data, function (key, value) {
+                        const { picture, square, name, bedroom, phone, price } = value;
+                        $("#output").append(`
+                    <div class="flat-container">
+                        <h2>${name}</h2>
+                        <div class="flat__picture">
+                            <img src="https://realt.by/thumb/c/180x120/ccffb5d03022918ac2f36f7934fa628d/86/j/site1dz37j86/fb98c38515.jpg">
+                            <div>${price}</div>
+                        </div>
+                        <div class="flat__info">
+                            <div>${bedroom}</div>
+                            <div>${square}</div>
+                            <div>${phone}</div>
+                        </div>
+                    </div>
+                `);
+                    });
+                });
+        //    });
+        </script>
+    </div>
+</main>
 </body>
 </html>

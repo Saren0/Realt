@@ -5,6 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Панель администратора</title>
 	<link rel="stylesheet" href="css/app-style.css">
 </head>
@@ -37,7 +38,7 @@
 	</div><hr>
 	<div>
 		<h2>Вставить апартаменты</h2>
-		<form action="InsertApartment" method="GET" accept-charset="utf-8">
+		<form action="InsertApartment" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 			<label for="idName">Название:</label>
 			<input id="idName" type="text" name="Name"
 				value="" required><br>
@@ -53,9 +54,9 @@
 			<label for="idPhone">Телефон:</label>
 			<input id="idPhone" type="text" name="Phone"
 				   value="" required><br>
-			<label for="idPicture">Ссылка на изображение:</label>
-			<input id="idPicture" type="text" name="Picture"
-				   value="" required><br>
+			<label for="idPicture">Изображение:</label>
+			<input type="file" id="idPicture" name="File" required><br>
+
 			<input type="submit" name="Submit2">
 		</form>
 	</div><hr>

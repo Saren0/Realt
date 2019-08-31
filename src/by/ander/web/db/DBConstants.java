@@ -5,8 +5,6 @@ package by.ander.web.db;
  */
 class DBConstants {
 
-    // The source data for the connection to the database.
-
     /**
      * Класс драйвера mysql
      */
