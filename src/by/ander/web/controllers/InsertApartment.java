@@ -29,13 +29,13 @@ public class InsertApartment extends AbstractBaseController {
             String price = request.getParameter("Price");
 			String phone = request.getParameter("Phone");
             Part filePart = request.getPart("File");
-            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-
+            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString().replace(" ", "");
+            //final String fileName = UUID.randomUUID().toString().replace("-", "");
             InputStream fileContent = filePart.getInputStream();
+            insertPictureIntoServer(fileContent, fileName);
 
-            final String PATH = "C:\\Users\\user\\Downloads\\Realt\\WebContent\\upload";
-            String picturePath = PATH + File.separator + fileName;
-            insertPictureIntoServer(fileContent, picturePath);
+            final String URL_UPLOAD = "http://localhost:8080/KR_Web_exploded/upload";
+            String picturePath = URL_UPLOAD + "/" + fileName;
 
             doInsertApartment(name, bedroom, square, price, phone, picturePath);
             jump("/ViewDataController", request, response);
@@ -55,8 +55,10 @@ public class InsertApartment extends AbstractBaseController {
         }
     }
 
-    private void insertPictureIntoServer(InputStream input, String path) throws IOException {
-        try (OutputStream out = new FileOutputStream(new File(path))) {
+    private void insertPictureIntoServer(InputStream input, String fileName) throws IOException {
+        final String PATH = "C:\\Users\\user\\Downloads\\Realt\\WebContent\\upload";
+        String picturePath = PATH + File.separator + fileName;
+        try (OutputStream out = new FileOutputStream(new File(picturePath))) {
             int read;
             final byte[] bytes = new byte[1024];
 

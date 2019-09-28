@@ -16,12 +16,30 @@
     <link rel="icon" type="image/png" href="images/icons/favicon.ico">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <style type="text/css">
-            .flat-container {
-
-            }
-            .flat__picture {
-
-            }
+        .jumbotron {
+            margin: 0;
+        }
+        .flat-container {
+            padding: 10px 0px;
+            border-bottom: 1px solid #d6d6d6;
+        }
+        .flat__details {
+            display: flex;
+        }
+        .flat__picture {
+            display: flex;
+            flex-direction: column;
+            margin-right: 15px;
+        }
+        .flat__picture > img {
+            width: 180px;
+            height: auto;
+        }
+        .flat__price {
+            margin-top: 10px;
+            background: #d6d6d6;
+            padding: 5px 10px;
+        }
     </style>
 </head>
 <body>
@@ -42,7 +60,7 @@
         </ul>
         <form class="form-inline my-2 my-md-0">
             <!--<input class="form-control" type="text" placeholder="Search">-->
-            <a href="#" class="text-info">Made by Palachanin Aliaksei</a>
+            <a href="login.html" class="text-info">Exit</a>
         </form>
     </div>
 </nav>
@@ -52,7 +70,6 @@
             <ul id="output"></ul>
         </div>
         <script>
-            //$('#mybtn').click(function () {
                 $.getJSON('IndexPageController', function (data) {
                     $("ul#output > li").remove();
 
@@ -61,22 +78,28 @@
                         $("#output").append(`
                     <div class="flat-container">
                         <h2>${name}</h2>
-                        <div class="flat__picture">
-                            <img src="https://realt.by/thumb/c/180x120/ccffb5d03022918ac2f36f7934fa628d/86/j/site1dz37j86/fb98c38515.jpg">
-                            <div>${price}</div>
+                        <div class="flat__details">
+                            <div class="flat__picture">
+                                <img src=${picture}>
+                            <div class="flat__price">Price: ${price}</div>
                         </div>
                         <div class="flat__info">
-                            <div>${bedroom}</div>
-                            <div>${square}</div>
-                            <div>${phone}</div>
+                            <div>Rooms: ${bedroom}</div>
+                            <div>Square: ${square}</div>
+                            <div>Phone: <b>${phone}</b></div>
+                        </div>
                         </div>
                     </div>
                 `);
                     });
                 });
-        //    });
         </script>
     </div>
 </main>
+<footer class="page-footer font-small blue">
+    <div class="footer-copyright text-center py-3">
+        <a href="#">Made by Palachanin Aliaksei</a>
+    </div>
+</footer>
 </body>
 </html>

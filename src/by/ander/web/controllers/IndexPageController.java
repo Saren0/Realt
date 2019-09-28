@@ -23,7 +23,6 @@ public class IndexPageController extends AbstractBaseController {
         try {
             connection = ConnectionControl.getConnection();
             DBDataLoader loader = new DBDataLoader();
-            //request.setCharacterEncoding("UTF-8");
             response.setContentType("application/json;charset=UTF-8");
             try (PrintWriter out = response.getWriter()){
                 List<Apartment> apartments = loader.getAllApartments(connection);

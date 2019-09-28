@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -29,8 +30,13 @@ public class LoginPageController extends AbstractBaseController {
                 }
                 jump("/index.html", request, response);
             }
-        } catch (IllegalArgumentException ex) {
-            jumpError("/login.html", ex.getMessage(), request, response);
+        } catch (IllegalArgumentException | NullPointerException ex) {
+            PrintWriter out = response.getWriter();
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('User or password incorrect');");
+            out.println("location='login.html';");
+            out.println("</script>");
+//            jumpError("/login.html", ex.getMessage(), request, response);
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
